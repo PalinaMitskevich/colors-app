@@ -3,22 +3,9 @@ import { observer } from "mobx-react-lite"
 import Item from "../Item";
 import { appState } from '../../store'
 import usePagination from "../../hooks/usePagination";
+import './index.css'
 
 const MainContent: React.FC = observer(() => {
-
-    const {
-        firstContentIndex,
-        lastContentIndex,
-        nextPage,
-        prevPage,
-        page,
-        setPage,
-        totalPages,
-    } = usePagination({
-        contentPerPage: 5,
-        count: appState.colors.length,
-    });
-
     useEffect(() => {
         const fetchInfo = async () => {
             const response = await fetch('https://reqres.in/api/products')
@@ -29,8 +16,24 @@ const MainContent: React.FC = observer(() => {
     }, [])
 
     const filteredColors = appState.colors.filter(({ id }) => appState.searchInputValue !== ''
-            ? String(id).includes(appState.searchInputValue)
-            : true)
+        ? String(id).includes(appState.searchInputValue)
+        : true
+    )
+
+    const {
+        firstContentIndex,
+        lastContentIndex,
+        moveToNextPage,
+        moveToPrevPage,
+        page,
+        setPage,
+        totalPages,
+    } = usePagination({
+        itemsPerPage: 5,
+        itemsAmount: filteredColors.length,
+    });
+
+    const pages = Array.from(Array(totalPages), (_, index) => index + 1)
 
     return (
         <div className='items-container'>
@@ -41,25 +44,18 @@ const MainContent: React.FC = observer(() => {
                 <div>Nothing found</div>
             )}
             <div className="pagination">
-                <p className="text">
-                    {page}/{totalPages}
-                </p>
-                <button onClick={prevPage} className="page">
-                    &larr;
-                </button>
-                {/* @ts-ignore */}
-                {[...Array(totalPages).keys()].map((el) => (
+                <p className="text">{page}/{totalPages}</p>
+                <button onClick={moveToPrevPage} className="page">&larr;</button>
+                {pages.map((item) => (
                     <button
-                        onClick={() => setPage(el + 1)}
-                        key={el}
-                        className={`page ${page === el + 1 ? "active" : ""}`}
+                        onClick={() => setPage(item)}
+                        key={item}
+                        className={`page ${page === item ? "active" : ""}`}
                     >
-                        {el + 1}
+                        {item}
                     </button>
                 ))}
-                <button onClick={nextPage} className="page">
-                    &rarr;
-                </button>
+                <button onClick={moveToNextPage} className="page">&rarr;</button>
             </div>
         </div>
     );

@@ -1,30 +1,22 @@
 import { useState } from "react";
 
-const usePagination: UsePagination = ({ contentPerPage, count }) => {
+const usePagination: UsePagination = ({ itemsPerPage, itemsAmount }) => {
     const [page, setPage] = useState(1)
-    const pageCount = Math.ceil(count / contentPerPage)
-    const lastContentIndex = page * contentPerPage
-    const firstContentIndex = lastContentIndex - contentPerPage
+    const totalPages = Math.ceil(itemsAmount / itemsPerPage)
+    const lastContentIndex = page * itemsPerPage
+    const firstContentIndex = lastContentIndex - itemsPerPage
 
-    const changePage = (direction: boolean) => {
-        setPage((state) => {
-            if (direction) {
-                if (state === pageCount) {
-                    return state
-                }
-                return state + 1
-            } else {
-                if (state === 1) {
-                    return state
-                }
-                return state - 1
-            }
-        });
-    };
+    const moveToNextPage = () => {
+        setPage((state) => state === totalPages ? state : state + 1)
+    }
 
-    const setPageSAFE = (num: number) => {
-        if (num > pageCount) {
-            setPage(pageCount)
+    const moveToPrevPage = () => {
+        setPage((state) => state === 1 ? state : state - 1)
+    }
+
+    const setPageDirectly = (num: number) => {
+        if (num > totalPages) {
+            setPage(totalPages)
         } else if (num < 1) {
             setPage(1)
         } else {
@@ -33,10 +25,10 @@ const usePagination: UsePagination = ({ contentPerPage, count }) => {
     };
 
     return {
-        totalPages: pageCount,
-        nextPage: () => changePage(true),
-        prevPage: () => changePage(false),
-        setPage: setPageSAFE,
+        totalPages,
+        moveToNextPage,
+        moveToPrevPage,
+        setPage: setPageDirectly,
         firstContentIndex,
         lastContentIndex,
         page,

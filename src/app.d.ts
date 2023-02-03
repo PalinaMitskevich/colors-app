@@ -15,8 +15,8 @@ interface UsePaginationReturn {
     totalPages: number;
     firstContentIndex: number;
     lastContentIndex: number;
-    nextPage: () => void;
-    prevPage: () => void;
+    moveToNextPage: () => void;
+    moveToPrevPage: () => void;
     setPage: (page: number) => void;
 }
 type UsePagination = (UsePaginationProps) => (UsePaginationReturn);
