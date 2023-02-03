@@ -15,14 +15,20 @@ const MainContent: React.FC = observer(() => {
         fetchInfo()
     }, [])
 
+    const filteredColors = appState.colors.filter(({ id }) => appState.searchInputValue !== ''
+            ? String(id).includes(appState.searchInputValue)
+            : true)
 
     return (
         <div className='items-container'>
-            {appState.colors.map((color) => (
-                <Item color={color} key={color.id}/>
-            ) )}
+            {filteredColors.map((color) => <Item color={color} key={color.id}/>)}
+            {filteredColors.length === 0 && (
+                <div>Nothing found</div>
+            )}
         </div>
     );
 });
+
+//to make if nothingth found
 
 export default MainContent;

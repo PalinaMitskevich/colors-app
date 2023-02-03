@@ -4,6 +4,7 @@ class AppState {
     colors: Array<Color> = []
     isModalShown: boolean = false
     activeColor: Color | null = null
+    searchInputValue: string = ''
 
     constructor() {
         makeAutoObservable(this)
@@ -19,6 +20,10 @@ class AppState {
 
     setActiveColor(item: Color) {
         this.activeColor = item
+    }
+
+    setSearchInputValue(value: string) {
+        this.searchInputValue = value
     }
 
 }

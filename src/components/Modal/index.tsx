@@ -10,11 +10,14 @@ const Modal: React.FC = observer(() => {
 
     return (
         <div className='modal'>
-            <div className='modal-content'>
-                <div>{appState.activeColor?.name}</div>
-                <h1 className='modal-header'>Modal window open</h1>
+            <div className='modal-container'>
+                <p>{appState.activeColor?.id}</p>
+                <p>{appState.activeColor?.name}</p>
+                <p>{appState.activeColor?.year}</p>
+                <p>{appState.activeColor?.pantone_value}</p>
                 <button onClick={() => appState.setIsModalShown(false)}>Close</button>
             </div>
+
         </div>
     );
 });

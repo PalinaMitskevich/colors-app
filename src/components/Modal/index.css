@@ -10,7 +10,8 @@
     justify-content: center;
 }
 
-.modal-content {
+.modal-container {
     width: 500px;
     background-color: #fff;
+    text-align: center;
 }
