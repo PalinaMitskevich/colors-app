@@ -25,7 +25,6 @@ class AppState {
     setSearchInputValue(value: string) {
         this.searchInputValue = value
     }
-
 }
 
 export const appState = new AppState()
