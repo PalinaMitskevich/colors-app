@@ -2,9 +2,10 @@ import { makeAutoObservable } from "mobx"
 
 class AppState {
     colors: Array<Color> = []
-    isModalShown: boolean = false
+    isModalShown = false
     activeColor: Color | null = null
-    searchInputValue: string = ''
+    searchInputValue = ''
+    errorCode: number | null = null
 
     constructor() {
         makeAutoObservable(this)
@@ -24,6 +25,10 @@ class AppState {
 
     setSearchInputValue(value: string) {
         this.searchInputValue = value
+    }
+
+    setErrorCode(error: number | null) {
+        this.errorCode = error
     }
 }
 

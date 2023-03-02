@@ -1,0 +1,17 @@
+.errorContainer {
+    text-align: center;
+}
+
+.errorCode {
+    margin: 90px 0 30px;
+    font-size: 110px;
+}
+
+.errorMessage {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.errorDescription {
+    font-size: 26px;
+}

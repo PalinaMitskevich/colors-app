@@ -1,0 +1,27 @@
+.itemsContainer {
+    min-height: 289.6px;
+    overflow: hidden;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid grey;
+    text-align: center;
+    padding: 10px 0 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.heading > div {
+    width: calc(100% / 3);
+}
+
+.notFoundPage {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 24px;
+}
+

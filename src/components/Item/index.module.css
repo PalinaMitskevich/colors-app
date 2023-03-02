@@ -1,0 +1,22 @@
+.item {
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    border: 1px solid#b2b0b0;
+}
+
+.item:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.descriptionContainer {
+    width: calc(100% / 3);
+    padding: 15px 0 15px;
+}
+
+.description {
+    text-align: center;
+    font-size: 18px;
+    text-overflow: ellipsis;
+}

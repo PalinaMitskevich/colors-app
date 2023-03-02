@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import styles from './index.module.css';
 import { observer } from "mobx-react-lite";
 import { appState } from "../../store";
 
@@ -13,10 +13,16 @@ const Item: React.FC<Props> = observer(({color} ) => {
     }
 
     return (
-        <div className='item' style={{backgroundColor: color.color}} onClick={handleClick}>
-            {color.id}
-            {color.name}
-            {color.year}
+        <div className={styles.item} style={{backgroundColor: color.color}} onClick={handleClick}>
+            <div className={styles.descriptionContainer}>
+                <p className={styles.description}>{color.id}</p>
+            </div>
+            <div className={styles.descriptionContainer}>
+                <p className={styles.description}>{color.name}</p>
+            </div>
+            <div className={styles.descriptionContainer}>
+                <p className={styles.description}>{color.year}</p>
+            </div>
         </div>
     );
 });

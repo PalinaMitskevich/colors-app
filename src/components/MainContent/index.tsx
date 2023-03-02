@@ -3,14 +3,20 @@ import { observer } from "mobx-react-lite"
 import Item from "../Item";
 import { appState } from '../../store'
 import usePagination from "../../hooks/usePagination";
-import './index.css'
+import styles from './index.module.css'
+import Pagination from "../Pagination";
 
 const MainContent: React.FC = observer(() => {
     useEffect(() => {
         const fetchInfo = async () => {
-            const response = await fetch('https://reqres.in/api/products')
-            const information = await response.json()
-            appState.setColors(information.data)
+            const response = await fetch('https://reqres.in/api/products/')
+            if(response.ok) {
+                const information = await response.json()
+                appState.setColors(information.data)
+                appState.setErrorCode(null)
+            } else {
+                appState.setErrorCode(response.status)
+            }
         }
         fetchInfo()
     }, [])
@@ -36,27 +42,30 @@ const MainContent: React.FC = observer(() => {
     const pages = Array.from(Array(totalPages), (_, index) => index + 1)
 
     return (
-        <div className='items-container'>
-            {filteredColors
-                .slice(firstContentIndex, lastContentIndex)
-                .map((color) => <Item color={color} key={color.id}/>)}
-            {filteredColors.length === 0 && (
-                <div>Nothing found</div>
-            )}
-            <div className="pagination">
-                <p className="text">{page}/{totalPages}</p>
-                <button onClick={moveToPrevPage} className="page">&larr;</button>
-                {pages.map((item) => (
-                    <button
-                        onClick={() => setPage(item)}
-                        key={item}
-                        className={`page ${page === item ? "active" : ""}`}
-                    >
-                        {item}
-                    </button>
-                ))}
-                <button onClick={moveToNextPage} className="page">&rarr;</button>
+        <div >
+            <div className={styles.itemsContainer}>
+                <div className={styles.heading}>
+                    <div><p>ID</p></div>
+                    <div><p>NAME</p></div>
+                    <div><p>YEAR</p></div>
+                </div>
+                {filteredColors
+                    .slice(firstContentIndex, lastContentIndex)
+                    .map((color) => <Item color={color} key={color.id}/>)}
+                {filteredColors.length === 0 && (
+                    <div className={styles.notFoundPage}>Nothing found</div>
+                )}
             </div>
+            {filteredColors.length !== 0 && (
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    moveToPrevPage={moveToPrevPage}
+                    pages={pages}
+                    setPage={setPage}
+                    moveToNextPage={moveToNextPage}
+                />
+            )}
         </div>
     );
 });

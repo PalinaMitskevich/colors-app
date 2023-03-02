@@ -2,17 +2,24 @@ import React from 'react';
 import MainContent from "./components/MainContent";
 import SearchInput from "./components/SearchInput";
 import Modal from "./components/Modal";
-import './App.css';
+import styles from './App.module.css';
+import {observer} from "mobx-react-lite";
+import {appState} from "./store";
+import ErrorPage from "./components/ErrorPage";
 
-function App() {
+const App = observer(() => {
 
-  return (
-    <div className="app">
-        <SearchInput />
-        <MainContent />
-        <Modal />
-    </div>
-  );
-}
+    return (
+        <div className={styles.app}>
+            {appState.errorCode === null ? (
+                <>
+                    <SearchInput />
+                    <MainContent />
+                </>
+            ) : <ErrorPage />}
+            <Modal />
+        </div>
+    );
+})
 
 export default App;

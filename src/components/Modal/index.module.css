@@ -1,0 +1,79 @@
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContainer {
+    width: 400px;
+    height: 380px;
+    background-color: #e8e0df;
+    position: relative;
+    border-radius: 20px;
+}
+
+.colorId {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.closeButton {
+    background: none;
+    color: inherit;
+    border: none;
+    position: absolute;
+    top: 8px;
+    right: 4px;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pantoneColorContainer {
+    width: 220px;
+    height: 250px;
+    margin-top: 40px;
+    background-color: white;
+    position: relative;
+    border-radius: 20px;
+}
+
+.pantoneColor {
+    width: 190px;
+    height: 170px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 7%;
+    border-radius: 20px;
+}
+
+.pantoneYear {
+    padding: 125px 0 0 10px;
+    font-size: 38px;
+}
+
+.pantoneName {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    overflow: hidden;
+}
+
+.pantoneValue {
+    position: absolute;
+    top: 90%;
+    left: 10%;
+}
