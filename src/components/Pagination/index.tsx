@@ -1,5 +1,5 @@
 import React from 'react';
-import {IoArrowBackOutline, IoArrowForwardOutline} from "react-icons/io5";
+import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 import styles from './index.module.css'
 
 type Props = {
@@ -15,7 +15,7 @@ const Pagination: React.FC<Props> = ({ page, totalPages, moveToPrevPage, pages, 
     return (
         <div className={styles.pagination}>
             <div className={styles.buttonsContainer}>
-                <button onClick={moveToPrevPage} className={styles.arrowBack}><IoArrowBackOutline /></button>
+                <button onClick={moveToPrevPage} className={styles.arrowBack} data-testid='arrowBack'><IoArrowBackOutline /></button>
                 {pages.map((item) => (
                     <button
                         onClick={() => setPage(item)}
@@ -25,7 +25,7 @@ const Pagination: React.FC<Props> = ({ page, totalPages, moveToPrevPage, pages, 
                         {item}
                     </button>
                 ))}
-                <button onClick={moveToNextPage} className={styles.arrowForward}><IoArrowForwardOutline /></button>
+                <button onClick={moveToNextPage} className={styles.arrowForward} data-testid='arrowForward'><IoArrowForwardOutline /></button>
             </div>
             <p className={styles.text}>{page}/{totalPages}</p>
         </div>

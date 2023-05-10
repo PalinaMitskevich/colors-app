@@ -1,9 +1,9 @@
 import { create } from 'react-test-renderer';
-import ErrorPage from './index';
+import Modal from './index';
 
-describe('ErrorPage', () => {
+describe('Modal', () => {
     it('Should render correctly', () => {
-        const comp = create(<ErrorPage />)
+        const comp = create(<Modal />)
         expect(comp).toMatchSnapshot()
     })
 })

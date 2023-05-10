@@ -1,9 +1,9 @@
 import { create } from 'react-test-renderer';
-import ErrorPage from './index';
+import SearchInput from './index';
 
-describe('ErrorPage', () => {
+describe('SearchInput', () => {
     it('Should render correctly', () => {
-        const comp = create(<ErrorPage />)
+        const comp = create(<SearchInput />)
         expect(comp).toMatchSnapshot()
     })
 })
